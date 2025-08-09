@@ -34,7 +34,7 @@ h1 { margin:0; font-size:28px; }
   width:100%;
   height:auto;
   display:block;
-  object-fit:contain; /* no cropping */
+  object-fit:contain;
 }
 .msg { color:var(--sub); margin:14px 0 10px; }
 
@@ -75,7 +75,8 @@ button:hover { border-color:#474765; }
   grid-template-columns:repeat(8, 1fr);
   gap:6px;
   padding:6px;
-  z-index:5; /* starts above until we disable pointer events */
+  z-index:5;
+  transition: opacity 0.5s ease;
 }
 .tile {
   background: repeating-linear-gradient(135deg, var(--tile) 0 10px, var(--tile2) 10px 20px);
@@ -86,6 +87,11 @@ button:hover { border-color:#474765; }
   opacity:0;
   pointer-events:none;
   transform:scale(0.98);
+}
+
+.tiles.hidden-all {
+  opacity:0;
+  pointer-events:none; /* disables clicks on the whole grid */
 }
 
 footer {
