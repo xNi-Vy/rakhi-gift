@@ -1,0 +1,56 @@
+:root{
+  --bg:#0e0e12; --fg:#f6f6f9; --sub:#b9b9c6; --accent:#ffd166; --soft:#1a1a22;
+  --tile:#2a2a36; --tile2:#343446; --ring:#ffadad;
+  --radius:14px; --gap:10px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; display:grid; place-items:center; background:radial-gradient(1200px 700px at 70% -10%, #1b1b25, #0e0e12);
+  color:var(--fg); padding:20px;
+}
+.card{
+  width:min(680px, 100%); background:linear-gradient(180deg, #15151d, #101018);
+  border:1px solid #242438; border-radius:var(--radius); padding:22px; box-shadow:0 8px 40px rgba(0,0,0,.45);
+}
+header{display:flex; align-items:baseline; gap:10px; margin-bottom:10px}
+h1{margin:0; font-size:28px}
+.tag{margin:0; color:var(--sub)}
+.hero{border-radius:12px; overflow:hidden; border:1px solid #25253a}
+.hero img{width:100%; display:block; aspect-ratio:16/9; object-fit:cover}
+.msg{color:var(--sub); margin:14px 0 10px}
+
+.reveal{
+  position:relative; border:1px dashed #40405a; border-radius:12px; padding:16px; background:var(--soft);
+}
+.hidden{display:grid; gap:10px; place-items:center; padding:24px 10px}
+.hidden p{margin:0; color:var(--sub)}
+.code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", Consolas, monospace;
+  font-size:22px; letter-spacing:.06em; padding:10px 14px; border:1px solid #2f2f44; border-radius:10px;
+  background:#14141c;
+}
+button{
+  appearance:none; border:1px solid #2f2f44; background:#161623; color:var(--fg);
+  padding:10px 14px; border-radius:10px; cursor:pointer;
+}
+button:hover{border-color:#474765}
+
+.tiles{
+  position:absolute; inset:0; display:grid; grid-template-columns:repeat(8, 1fr); gap:6px; padding:6px;
+}
+.tile{
+  background: repeating-linear-gradient(135deg, var(--tile) 0 10px, var(--tile2) 10px 20px);
+  border-radius:8px; transition:opacity .2s ease, transform .15s ease;
+}
+.tile.revealed{opacity:0; pointer-events:none; transform:scale(0.98)}
+footer{display:flex; align-items:center; gap:8px; margin-top:10px; color:var(--sub)}
+.linkish{background:transparent; border:none; color:var(--accent); cursor:pointer; padding:0}
+.sep{opacity:.5}
+
+dialog{
+  border:none; border-radius:12px; padding:18px; background:#14141d; color:var(--fg);
+  border:1px solid #2a2a42;
+}
+dialog::backdrop{background:rgba(0,0,0,.5)}
