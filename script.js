@@ -1,4 +1,4 @@
-const GIFT_CODE = "Connection not secure! Please contact Vy.";
+const GIFT_CODE = "Code Redeemed.";
 
 const codeEl = document.getElementById("giftCode");
 const copyBtn = document.getElementById("copyBtn");
@@ -11,9 +11,9 @@ codeEl.textContent = "XXXX-XXXX-XXXX";  // show mask first
 function copyGiftCode() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(GIFT_CODE).then(() => {
-      copyBtn.textContent = "Copy failed. Not secure.";
+      copyBtn.textContent = "Code Redeemed. Nothing to Copy.";
       setTimeout(() => (copyBtn.textContent = "Copy code"), 1500);
-    }).catch(() => alert("Copy failed. Please copy manually."));
+    }).catch(() => alert("Code Redeemed. Nothing to Copy."));
   } else {
     const temp = document.createElement("textarea");
     temp.value = GIFT_CODE;
@@ -21,7 +21,7 @@ function copyGiftCode() {
     temp.select();
     document.execCommand("copy");
     document.body.removeChild(temp);
-    alert("Code copied!");
+    alert("Code Redeemed. Nothing to Copy.");
   }
 }
 copyBtn.addEventListener("click", copyGiftCode);
