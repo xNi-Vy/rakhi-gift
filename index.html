@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rakhi Gift • From Vy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <header>
+      <h1>Rakhi Gift 🪢</h1>
+      <p class="tag">for my gaming bro</p>
+    </header>
+
+    <section class="hero">
+      <img src="assets/rakhi.jpg" alt="Rakhi" />
+    </section>
+
+    <section class="msg">
+      <p>Claim your gift below. Thanks for being my unofficial bodyguard in D2 & Division 2. No refunds, only revives. 😌</p>
+    </section>
+
+    <!-- “Scratch-ish” overlay made of tiles -->
+    <section class="reveal">
+      <div class="hidden">
+        <p>Your code:</p>
+        <div class="code" id="giftCode">XXXX-XXXX-XXXX</div>
+        <button id="copyBtn" type="button">Copy code</button>
+      </div>
+      <div class="tiles" id="tiles"></div>
+    </section>
+
+    <footer>
+      <button id="resetTiles" type="button" class="linkish">Reset cover</button>
+      <span class="sep">•</span>
+      <a class="linkish" href="#" id="howto">What is this?</a>
+    </footer>
+  </main>
+
+  <dialog id="about">
+    <h3>About</h3>
+    <p>Scratch the tiles to reveal your gift code. Click “Copy code” to copy it.</p>
+    <button id="closeAbout" type="button">Close</button>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
