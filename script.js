@@ -23,15 +23,32 @@ for (let i = 0; i < COLS * ROWS; i++) {
   tilesEl.appendChild(t);
 }
 
-copyBtn.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(GIFT_CODE);
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => (copyBtn.textContent = "Copy code"), 1200);
-  } catch {
-    alert("Copy failed. Long-press to copy manually.");
+copyBtn.addEventListener("click", () => {
+  const text = GIFT_CODE;
+  
+  // Fallback for older browsers
+  if (!navigator.clipboard) {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    alert("Code copied!");
+    return;
   }
+
+  // Modern method
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => copyBtn.textContent = "Copy code", 1500);
+    })
+    .catch(() => {
+      alert("Copy failed. Please copy manually: " + text);
+    });
 });
+
 
 resetBtn.addEventListener("click", () => {
   tilesEl.querySelectorAll(".tile").forEach(t => t.classList.remove("revealed"));
