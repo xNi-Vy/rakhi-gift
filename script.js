@@ -5,7 +5,7 @@ const copyBtn = document.getElementById("copyBtn");
 const tilesEl = document.getElementById("tiles");
 const resetBtn = document.getElementById("resetTiles");
 
-codeEl.textContent = GIFT_CODE;
+codeEl.textContent = "XXXX-XXXX-XXXX";  // show mask first
 
 // Copy logic for both button & clicking the code
 function copyGiftCode() {
@@ -41,6 +41,7 @@ for (let i = 0; i < totalTiles; i++) {
       revealedCount++;
       // When 60% revealed, hide the grid completely
       if (revealedCount >= totalTiles * 0.6) {
+        codeEl.textContent = GIFT_CODE;
         tilesEl.classList.add("hidden-all");
       }
     }
