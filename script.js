@@ -1,61 +1,104 @@
-// --- config your gift code here ---
-const GIFT_CODE = "RKHI-2K25-ABCD-9876"; // put your real code
+:root {
+  --bg:#0e0e12; --fg:#f6f6f9; --sub:#b9b9c6; --accent:#ffd166; --soft:#1a1a22;
+  --tile:#2a2a36; --tile2:#343446;
+  --radius:14px; --gap:10px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+* { box-sizing:border-box; }
+html, body { height:100%; }
+body {
+  margin:0;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(1200px 700px at 70% -10%, #1b1b25, #0e0e12);
+  color:var(--fg);
+  padding:20px;
+}
+.card {
+  width:min(680px, 100%);
+  background:#15151d;
+  border:1px solid #242438;
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:0 8px 40px rgba(0,0,0,.45);
+}
+header { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+h1 { margin:0; font-size:28px; }
+.tag { margin:0; color:var(--sub); }
+.hero {
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #25253a;
+}
+.hero img {
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain; /* no cropping */
+}
+.msg { color:var(--sub); margin:14px 0 10px; }
 
-const codeEl = document.getElementById("giftCode");
-const tilesEl = document.getElementById("tiles");
-const copyBtn = document.getElementById("copyBtn");
-const resetBtn = document.getElementById("resetTiles");
-const howto = document.getElementById("howto");
-const about = document.getElementById("about");
-const closeAbout = document.getElementById("closeAbout");
+.reveal {
+  position:relative;
+  border:1px dashed #40405a;
+  border-radius:12px;
+  padding:16px;
+  background:var(--soft);
+}
+.hidden { display:grid; gap:10px; place-items:center; padding:24px 10px; }
+.hidden p { margin:0; color:var(--sub); }
+.code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size:22px;
+  letter-spacing:.06em;
+  padding:10px 14px;
+  border:1px solid #2f2f44;
+  border-radius:10px;
+  background:#14141c;
+  cursor:pointer;
+}
+button {
+  appearance:none;
+  border:1px solid #2f2f44;
+  background:#161623;
+  color:var(--fg);
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+}
+button:hover { border-color:#474765; }
 
-codeEl.textContent = GIFT_CODE;
-
-// build scratch-ish tiles (no canvas)
-const COLS = 8, ROWS = 5;
-for (let i = 0; i < COLS * ROWS; i++) {
-  const t = document.createElement("div");
-  t.className = "tile";
-  // reveal on hover/drag/click
-  const reveal = () => t.classList.add("revealed");
-  t.addEventListener("pointerenter", (e) => { if (e.buttons) reveal(); });
-  t.addEventListener("pointerdown", reveal);
-  tilesEl.appendChild(t);
+.tiles {
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns:repeat(8, 1fr);
+  gap:6px;
+  padding:6px;
+  z-index:5; /* stays above until revealed */
+}
+.tile {
+  background: repeating-linear-gradient(135deg, var(--tile) 0 10px, var(--tile2) 10px 20px);
+  border-radius:8px;
+  transition:opacity .2s ease, transform .15s ease;
+}
+.tile.revealed {
+  opacity:0;
+  pointer-events:none;
+  transform:scale(0.98);
 }
 
-copyBtn.addEventListener("click", () => {
-  const text = GIFT_CODE;
-  
-  // Fallback for older browsers
-  if (!navigator.clipboard) {
-    const temp = document.createElement("textarea");
-    temp.value = text;
-    document.body.appendChild(temp);
-    temp.select();
-    document.execCommand("copy");
-    document.body.removeChild(temp);
-    alert("Code copied!");
-    return;
-  }
-
-  // Modern method
-  navigator.clipboard.writeText(text)
-    .then(() => {
-      copyBtn.textContent = "Copied!";
-      setTimeout(() => copyBtn.textContent = "Copy code", 1500);
-    })
-    .catch(() => {
-      alert("Copy failed. Please copy manually: " + text);
-    });
-});
-
-
-resetBtn.addEventListener("click", () => {
-  tilesEl.querySelectorAll(".tile").forEach(t => t.classList.remove("revealed"));
-});
-
-howto.addEventListener("click", (e) => {
-  e.preventDefault();
-  about.showModal();
-});
-closeAbout.addEventListener("click", () => about.close());
+footer {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  color:var(--sub);
+}
+.linkish {
+  background:transparent;
+  border:none;
+  color:var(--accent);
+  cursor:pointer;
+  padding:0;
+}
