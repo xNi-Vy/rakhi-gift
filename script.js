@@ -29,10 +29,22 @@ codeEl.addEventListener("click", copyGiftCode);
 
 // Scratch tiles
 const COLS = 8, ROWS = 5;
-for (let i = 0; i < COLS * ROWS; i++) {
+let revealedCount = 0;
+const totalTiles = COLS * ROWS;
+
+for (let i = 0; i < totalTiles; i++) {
   const t = document.createElement("div");
   t.className = "tile";
-  const reveal = () => t.classList.add("revealed");
+  const reveal = () => {
+    if (!t.classList.contains("revealed")) {
+      t.classList.add("revealed");
+      revealedCount++;
+      // When 60% of tiles are gone, disable the tile layer entirely
+      if (revealedCount >= totalTiles * 0.6) {
+        tilesEl.style.pointerEvents = "none";
+      }
+    }
+  };
   t.addEventListener("pointerenter", e => { if (e.buttons) reveal(); });
   t.addEventListener("pointerdown", reveal);
   tilesEl.appendChild(t);
@@ -40,4 +52,6 @@ for (let i = 0; i < COLS * ROWS; i++) {
 
 resetBtn.addEventListener("click", () => {
   tilesEl.querySelectorAll(".tile").forEach(t => t.classList.remove("revealed"));
+  tilesEl.style.pointerEvents = "auto";
+  revealedCount = 0;
 });
