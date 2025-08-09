@@ -1,4 +1,4 @@
-const GIFT_CODE = "RKHI-2K25-ABCD-9876"; // put your code here
+const GIFT_CODE = "Connection not secure! Please contact Vy.";
 
 const codeEl = document.getElementById("giftCode");
 const copyBtn = document.getElementById("copyBtn");
