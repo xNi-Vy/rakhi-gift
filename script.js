@@ -11,7 +11,7 @@ codeEl.textContent = GIFT_CODE;
 function copyGiftCode() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(GIFT_CODE).then(() => {
-      copyBtn.textContent = "Copied!";
+      copyBtn.textContent = "Copy failed. Not secure.";
       setTimeout(() => (copyBtn.textContent = "Copy code"), 1500);
     }).catch(() => alert("Copy failed. Please copy manually."));
   } else {
