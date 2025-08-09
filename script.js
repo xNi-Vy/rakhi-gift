@@ -39,9 +39,9 @@ for (let i = 0; i < totalTiles; i++) {
     if (!t.classList.contains("revealed")) {
       t.classList.add("revealed");
       revealedCount++;
-      // When 60% of tiles are gone, disable the tile layer entirely
+      // When 60% revealed, hide the grid completely
       if (revealedCount >= totalTiles * 0.6) {
-        tilesEl.style.pointerEvents = "none";
+        tilesEl.classList.add("hidden-all");
       }
     }
   };
@@ -50,8 +50,9 @@ for (let i = 0; i < totalTiles; i++) {
   tilesEl.appendChild(t);
 }
 
+// Reset button
 resetBtn.addEventListener("click", () => {
   tilesEl.querySelectorAll(".tile").forEach(t => t.classList.remove("revealed"));
-  tilesEl.style.pointerEvents = "auto";
+  tilesEl.classList.remove("hidden-all");
   revealedCount = 0;
 });
