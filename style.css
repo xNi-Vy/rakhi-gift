@@ -75,7 +75,7 @@ button:hover { border-color:#474765; }
   grid-template-columns:repeat(8, 1fr);
   gap:6px;
   padding:6px;
-  z-index:5; /* stays above until revealed */
+  z-index:5; /* starts above until we disable pointer events */
 }
 .tile {
   background: repeating-linear-gradient(135deg, var(--tile) 0 10px, var(--tile2) 10px 20px);
