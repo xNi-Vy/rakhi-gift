@@ -19,6 +19,14 @@ h1{margin:0; font-size:28px}
 .tag{margin:0; color:var(--sub)}
 .hero{border-radius:12px; overflow:hidden; border:1px solid #25253a}
 .hero img{width:100%; display:block; aspect-ratio:16/9; object-fit:cover}
+.hero{border-radius:12px; overflow:hidden; border:1px solid #25253a}
+.hero img{  width:100%; height:auto; display:block;
+.hero img { image-rendering:auto; }
+}
+
+/* optional: let users tap to zoom if text feels small */
+.hero img { image-rendering:auto; }
+
 .msg{color:var(--sub); margin:14px 0 10px}
 
 .reveal{
